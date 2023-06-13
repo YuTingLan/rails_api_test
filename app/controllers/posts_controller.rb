@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def index
     render json: Post.all
   end
@@ -43,4 +45,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:name, :title)
   end
+
+
+
 end
